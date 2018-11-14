@@ -1,0 +1,20 @@
+.room-list {
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.room-details {
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+    border-style: solid;
+    align-items: center;
+}
+
+h3 {
+    display: flex;
+    align-self: stretch;
+}

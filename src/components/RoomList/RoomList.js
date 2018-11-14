@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import './RoomList.css';
 
 class RoomList extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            rooms: []
+            rooms: [],
+            newRoomName: ''
         };
 
         this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -18,18 +20,33 @@ class RoomList extends Component {
         });
     }
 
+    createRoom() {
+        const newRoomName= this.state.newRoomName;
+        this.roomsRef.push({
+            name:newRoomName
+        });
+    }
+
     render() {
         return (
             <section className='room-list'>
             {
-                this.state.rooms.map( (room, roomIndex) =>
-                <section className="room-details">
+                this.state.rooms.map( (room, index) =>
+                <section className="room-details" key={index} >
                     <div>{room.name}</div>
-                    <div>Room: {roomIndex + 1}</div>
+                    <div>Room: {index + 1}</div>
                 </section>
                 )
             }
+                <section className='creator-container'>
+                    <form className='room-creator-form' onSubmit={ (e) => this.createRoom(e) }>
+                        <h3>Create new room</h3>
+                        <input className='new-room-name' type='text' />
+                        <input className='submit-new-room' type='submit' />
+                    </form>
+                </section>
             </section>
+
         );
     }
 }

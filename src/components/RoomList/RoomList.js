@@ -20,6 +20,10 @@ class RoomList extends Component {
         });
     }
 
+    handleChange(e) {
+        this.setState({ newRoomName: e.target.value })
+    }
+
     createRoom() {
         const newRoomName= this.state.newRoomName;
         this.roomsRef.push({
@@ -32,7 +36,7 @@ class RoomList extends Component {
             <section className='room-list'>
             {
                 this.state.rooms.map( (room, index) =>
-                <section className="room-details" key={index} >
+                <section className='room-details' key={index} >
                     <div>{room.name}</div>
                     <div>Room: {index + 1}</div>
                 </section>
@@ -41,7 +45,7 @@ class RoomList extends Component {
                 <section className='creator-container'>
                     <form className='room-creator-form' onSubmit={ (e) => this.createRoom(e) }>
                         <h3>Create new room</h3>
-                        <input className='new-room-name' type='text' />
+                        <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleChange(e) } />
                         <input className='submit-new-room' type='submit' />
                     </form>
                 </section>

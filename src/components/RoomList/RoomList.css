@@ -13,8 +13,3 @@
     border-style: solid;
     align-items: center;
 }
-
-h3 {
-    display: flex;
-    align-self: stretch;
-}

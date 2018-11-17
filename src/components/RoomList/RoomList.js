@@ -6,7 +6,8 @@ class RoomList extends Component {
         super(props);
         this.state = { 
             rooms: [],
-            newRoomName: ''
+            newRoomName: '',
+            activeRoom: ''
         };
 
         this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -20,8 +21,8 @@ class RoomList extends Component {
         });
     }
 
-    handleChange(e) {
-        this.setState({ newRoomName: e.target.value })
+    handleNewRoomNameChange(e) {
+        this.setState({ newRoomName: e.target.value });
     }
 
     createRoom() {
@@ -31,24 +32,31 @@ class RoomList extends Component {
         });
     }
 
+    selectActiveRoom(e) {
+        this.setState({ activeRoom: e.target.value.index});
+        console.log(this.state.activeRoom);
+    }
+
     render() {
         return (
             <section className='room-list'>
-            {
-                this.state.rooms.map( (room, index) =>
-                <section className='room-details' key={index} >
-                    <div>{room.name}</div>
-                    <div>Room: {index + 1}</div>
-                </section>
-                )
-            }
                 <section className='creator-container'>
                     <form className='room-creator-form' onSubmit={ (e) => this.createRoom(e) }>
                         <h3>Create new room</h3>
-                        <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleChange(e) } />
-                        <input className='submit-new-room' type='submit' />
+                        <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleNewRoomNameChange(e) } />
+                        <input className='new-room-button' type='submit' />
                     </form>
                 </section>
+                {
+                    this.state.rooms.map( (room, index) =>
+                    <section className='room-details' key={index} >
+                        <div>{room.name}</div>
+                        <div>Room: {index + 1}</div>
+                        <button className='select-active-room' type='button' onClick={ (e) => this.selectActiveRoom(e) } />
+                    </section>
+                    )
+                }
+
             </section>
 
         );

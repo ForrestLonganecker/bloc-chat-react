@@ -20,15 +20,21 @@ class RoomList extends Component {
         });
     }
 
+    componentWillUnmount() {
+        this.roomsRef = null;
+    }
+
     handleChange(e) {
         this.setState({ newRoomName: e.target.value })
     }
 
-    createRoom() {
-        const newRoomName= this.state.newRoomName;
-        this.roomsRef.push({
-            name:newRoomName
-        });
+    handleSubmit(e) {
+        e.preventDefault();
+        if (!this.state.newRoomName) { return }
+
+        const newRoom = this.state.newRoomName;
+        this.roomsRef.push({ name:newRoom });
+        this.setState({ rooms: [...this.state.rooms, newRoom], newRoomName: ''});
     }
 
     render() {
@@ -43,7 +49,7 @@ class RoomList extends Component {
                 )
             }
                 <section className='creator-container'>
-                    <form className='room-creator-form' onSubmit={ (e) => this.createRoom(e) }>
+                    <form className='room-creator-form' onSubmit={ (e) => this.handleSubmit(e) }>
                         <h3>Create new room</h3>
                         <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleChange(e) } />
                         <input className='submit-new-room' type='submit' />

@@ -25,17 +25,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <section className="chat-room-bar">
-          <RoomList
-            firebase={firebase}
-            activeRoom={this.state.activeRoom}
-
-          />
-          <MessageList
-            firebase={firebase}
-            activeRoom={this.state.activeRoom}
-          />
+      <div className='App'>
+        <header>Bloc Toc</header>
+        <section className='chat-area'>
+          <section className='chat-rooms'>
+            <RoomList
+              firebase={firebase}
+              activeRoom={this.state.activeRoom}
+            />
+          
+            <MessageList
+              firebase={firebase}
+              activeRoom={this.state.activeRoom}
+            />
+          </section>
         </section>
       </div>
     );

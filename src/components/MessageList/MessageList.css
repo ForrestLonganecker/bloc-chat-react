@@ -1,3 +1,11 @@
 .message-list-area {
     background-color: green;
 }
+.message-details {
+    display: flex;
+    flex-direction: column;
+    border: dashed;
+}
+.message-details div {
+    padding: 10
+}

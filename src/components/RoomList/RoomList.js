@@ -32,7 +32,7 @@ class RoomList extends Component {
     }
 
     selectActiveRoom(e) {
-        this.setState({ activeRoom: e});
+        this.setState({ activeRoom: e });
         console.log(this.state.activeRoom);
     }
 
@@ -49,9 +49,9 @@ class RoomList extends Component {
                 {
                     this.state.rooms.map( (room, index) =>
                     <section className='room-details' key={index} >
-                        <a className='select-active-room' onClick={ (e) => this.selectActiveRoom(index) }>
+                        <button className='select-active-room' onClick={ (e) => this.selectActiveRoom(index) }>
                             <div>{room.name}</div>
-                        </a>
+                        </button>
                     </section>
                     )
                 }

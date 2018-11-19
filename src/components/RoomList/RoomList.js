@@ -31,8 +31,7 @@ class RoomList extends Component {
     handleSubmit(e) {
         e.preventDefault();
         if (!this.state.newRoomName) { return }
-
-        const newRoom = this.state.newRoomName;
+        const newRoom = { name: this.state.newRoomName };
         this.roomsRef.push({ name:newRoom });
         this.setState({ rooms: [...this.state.rooms, newRoom], newRoomName: ''});
     }

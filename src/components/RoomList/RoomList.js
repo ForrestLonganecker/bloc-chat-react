@@ -7,7 +7,6 @@ class RoomList extends Component {
         this.state = { 
             rooms: [],
             newRoomName: '',
-            activeRoom: ''
         };
 
         this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -25,15 +24,15 @@ class RoomList extends Component {
         this.setState({ newRoomName: e.target.value });
     }
 
-    createRoom() {
-        const newRoomName= this.state.newRoomName;
-        this.roomsRef.push({
-            name:newRoomName
-        });
+    handleSubmit(e) {
+        e.preventDefault();
+        if (!this.state.newRoomName) { return }
+        const newRoom = this.state.newRoomName;
+        this.roomsRef.push({ name:newRoom });
     }
 
     selectActiveRoom(e) {
-        this.setState({ activeRoom: e.target.value.index});
+        this.setState({ activeRoom: e});
         console.log(this.state.activeRoom);
     }
 
@@ -41,7 +40,7 @@ class RoomList extends Component {
         return (
             <section className='room-list'>
                 <section className='creator-container'>
-                    <form className='room-creator-form' onSubmit={ (e) => this.createRoom(e) }>
+                    <form className='room-creator-form' onSubmit={ (e) => this.handleSubmit(e) }>
                         <h3>Create new room</h3>
                         <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleNewRoomNameChange(e) } />
                         <input className='new-room-button' type='submit' />
@@ -50,9 +49,9 @@ class RoomList extends Component {
                 {
                     this.state.rooms.map( (room, index) =>
                     <section className='room-details' key={index} >
-                        <div>{room.name}</div>
-                        <div>Room: {index + 1}</div>
-                        <button className='select-active-room' type='button' onClick={ (e) => this.selectActiveRoom(e) } />
+                        <a className='select-active-room' onClick={ (e) => this.selectActiveRoom(index) }>
+                            <div>{room.name}</div>
+                        </a>
                     </section>
                     )
                 }

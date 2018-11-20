@@ -14,7 +14,7 @@ class MessageList extends Component {
             }
         };
 
-        this.activeMessages = this.props.activeRoom.messages;
+        this.activeMessages = this.state.messages.filter(message => message.roomId === this.props.activeRoom);
         this.messagesRef = this.props.firebase.database().ref('messages');
     }
 
@@ -31,7 +31,7 @@ class MessageList extends Component {
         return (
             <section className='message-list-area'>
                 {
-                    this.state.messages.map( (message, index) => 
+                    this.activeMessages.map( (message, index) => 
                     <section className='message-details' key={index} >
                         <div className='message-username'>{message.username}</div>
                         <div className='message-content'>{message.content}</div>

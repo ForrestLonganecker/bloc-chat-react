@@ -31,10 +31,13 @@ class RoomList extends Component {
         this.roomsRef.push({ name:newRoom });
     }
 
+    /*
+    moved to App.js
     selectActiveRoom(e) {
         this.setState({ activeRoom: e });
         console.log(this.state.activeRoom);
     }
+    */
 
     render() {
         return (
@@ -49,7 +52,7 @@ class RoomList extends Component {
                 {
                     this.state.rooms.map( (room, index) =>
                     <section className='room-details' key={index} >
-                        <button className='select-active-room' onClick={ (e) => this.selectActiveRoom(index) }>
+                        <button className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
                             <div>{room.name}</div>
                         </button>
                     </section>

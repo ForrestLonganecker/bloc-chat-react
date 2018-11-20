@@ -23,6 +23,11 @@ class App extends Component {
     };
   }
 
+  selectActiveRoom(e) {
+    this.setState({ activeRoom: e });
+    console.log(this.state.activeRoom);
+  }
+
   render() {
     return (
       <div className='App'>
@@ -31,6 +36,7 @@ class App extends Component {
           <section className='chat-rooms'>
             <RoomList
               firebase={firebase}
+              selectActiveRoom={(e) => this.selectActiveRoom(e)}
               activeRoom={this.state.activeRoom}
             />
           

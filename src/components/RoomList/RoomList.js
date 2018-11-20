@@ -6,7 +6,7 @@ class RoomList extends Component {
         super(props);
         this.state = { 
             rooms: [],
-            newRoomName: ''
+            newRoomName: '',
         };
 
         this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -20,12 +20,8 @@ class RoomList extends Component {
         });
     }
 
-    componentWillUnmount() {
-        this.roomsRef = null;
-    }
-
-    handleChange(e) {
-        this.setState({ newRoomName: e.target.value })
+    handleNewRoomNameChange(e) {
+        this.setState({ newRoomName: e.target.value });
     }
 
     handleSubmit(e) {
@@ -33,27 +29,36 @@ class RoomList extends Component {
         if (!this.state.newRoomName) { return }
         const newRoom = this.state.newRoomName;
         this.roomsRef.push({ name:newRoom });
-        //this.setState({ rooms: [...this.state.rooms, newRoom], newRoomName: ''});
     }
+
+    /*
+    moved to App.js
+    selectActiveRoom(e) {
+        this.setState({ activeRoom: e });
+        console.log(this.state.activeRoom);
+    }
+    */
 
     render() {
         return (
             <section className='room-list'>
-            {
-                this.state.rooms.map( (room, index) =>
-                <section className='room-details' key={index} >
-                    <div>{room.name}</div>
-                    <div>Room: {index + 1}</div>
-                </section>
-                )
-            }
                 <section className='creator-container'>
                     <form className='room-creator-form' onSubmit={ (e) => this.handleSubmit(e) }>
                         <h3>Create new room</h3>
-                        <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleChange(e) } />
-                        <input className='submit-new-room' type='submit' />
+                        <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleNewRoomNameChange(e) } />
+                        <input className='new-room-button' type='submit' />
                     </form>
                 </section>
+                {
+                    this.state.rooms.map( (room, index) =>
+                    <section className='room-details' key={index} >
+                        <button className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
+                            <div>{room.name}</div>
+                        </button>
+                    </section>
+                    )
+                }
+
             </section>
 
         );

@@ -1,4 +1,14 @@
-.chat-room-bar {
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.chat-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-rooms {
   display: flex;
   justify-content: flex-start;
 }

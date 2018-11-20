@@ -12,12 +12,9 @@ class MessageList extends Component {
                 sentAt: "",
                 roomId: ""
             },
-            activeMessages: []
         };
 
         this.messagesRef = this.props.firebase.database().ref('messages');
-        //this.activeMessages = this.state.messages.filter(message => message.roomId === this.props.activeRoom.key);
-        console.log(this.activeMessages)
     }
 
     componentDidMount() {
@@ -26,8 +23,6 @@ class MessageList extends Component {
             message.key = snapshot.key;
             this.setState({ messages: this.state.messages.concat( message ) })
         });
-        this.setState({ activeMessages: this.state.messages.filter( message => message.roomId === this.props.activeRoom.key ) });
-        console.log(this.state.activeMessages);
     }
 
 
@@ -35,7 +30,7 @@ class MessageList extends Component {
         return (
             <section className='message-list-area'>
                 {
-                    this.state.activeMessages.map( (message, index) => 
+                    this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) => 
                     <section className='message-details' key={index} >
                         <div className='message-username'>{message.username}</div>
                         <div className='message-content'>{message.content}</div>

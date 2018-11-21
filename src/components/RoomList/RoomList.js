@@ -28,6 +28,7 @@ class RoomList extends Component {
         e.preventDefault();
         if (!this.state.newRoomName) { return }
         const newRoom = this.state.newRoomName;
+        this.setState({ rooms: [...this.state.rooms, newRoom], newRoomName: ''});
         this.roomsRef.push({ name:newRoom });
     }
 

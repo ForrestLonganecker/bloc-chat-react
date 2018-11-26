@@ -32,14 +32,6 @@ class RoomList extends Component {
         this.roomsRef.push({ name:newRoom });
     }
 
-    /*
-    moved to App.js
-    selectActiveRoom(e) {
-        this.setState({ activeRoom: e });
-        console.log(this.state.activeRoom);
-    }
-    */
-
     render() {
         return (
             <section className='room-list'>

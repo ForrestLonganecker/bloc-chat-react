@@ -13,20 +13,27 @@ class User extends Component {
     }
 
     componentDidMount() {
-        //if(!this.props.user.displayname) {return}
         this.props.firebase.auth().onAuthStateChanged( user => {
             this.props.setUser(user);
         });
+    }
+
+    displayUserName() {
+        if(this.props.user) {
+            return this.props.user.displayName;
+        } {
+            return 'Guest';
+        }
     }
 
     render() {
         return (
             <div className='log-in-box'>
                 <section className='sign-in-out'>
-                    <button className='sign-in-button' type='button' onClick={ this.handleSignInClick() } >Sign in</button>
-                    <button className='sign-out-button' type='button' onClick={ this.handleSignOutClick() } >Sign Out</button>
+                    <button className='sign-in-button' type='button' onClick={ () => this.handleSignInClick() } >Sign in</button>
+                    <button className='sign-out-button' type='button' onClick={ () => this.handleSignOutClick() } >Sign Out</button>
                 </section>
-                <h4 className='display-name'>{this.props.user.displayName ? this.props.user.displayName : 'Guest'}</h4>
+                <h4 className='display-name'>{this.displayUserName()}</h4>
             </div>
         );
     }

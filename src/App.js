@@ -46,7 +46,6 @@ class App extends Component {
             firebase={firebase}
             setUser={(e) => this.setUser(e)}
             user={this.state.user}
-            users={this.state.users}
           />
         </section>
         <section className='chat-area'>
@@ -60,6 +59,7 @@ class App extends Component {
             <MessageList
               firebase={firebase}
               activeRoom={this.state.activeRoom}
+              user={this.state.user}
             />
           </section>
         </section>

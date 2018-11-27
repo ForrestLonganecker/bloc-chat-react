@@ -21,8 +21,8 @@ class User extends Component {
     displayUserName() {
         if(this.props.user) {
             return this.props.user.displayName;
-        } {
-            return 'Guest';
+        } else {
+            return 'Please log in to start Tocing!';
         }
     }
 

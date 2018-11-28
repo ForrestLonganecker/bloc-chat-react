@@ -29,12 +29,12 @@ class App extends Component {
 
   selectActiveRoom(e) {
     this.setState({ activeRoom: e });
-    console.log(this.state.activeRoom);
+    //console.log(this.state.activeRoom);
   }
 
   setUser(e) {
     this.setState({ user: e });
-    console.log(this.state.user);
+    //console.log(this.state.user);
   }
 
   render() {

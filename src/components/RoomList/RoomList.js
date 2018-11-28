@@ -29,7 +29,7 @@ class RoomList extends Component {
         if (!this.state.newRoomName) { return }
         const newRoom = this.state.newRoomName;
         this.setState({ rooms: [...this.state.rooms, newRoom], newRoomName: ''});
-        this.roomsRef.push({ name:newRoom });
+        this.roomsRef.push({ name:newRoom, roomCreator: this.props.user.displayName });
     }
 
     render() {
@@ -45,9 +45,9 @@ class RoomList extends Component {
                 {
                     this.state.rooms.map( (room, index) =>
                     <section className='room-details' key={index} >
-                        <button className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
+                        <a className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
                             <div>{room.name}</div>
-                        </button>
+                        </a>
                     </section>
                     )
                 }

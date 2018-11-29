@@ -48,21 +48,28 @@ class MessageList extends Component {
         this.setState({ newMessage: {content: e.target.value, roomId: this.props.activeRoom.key, username: this.props.user.displayName, sentAt: this.props.firebase.database.ServerValue.TIMESTAMP } });
     }
 
-    handleDisplay() {
-
+    handleDelete(e) {
+        console.log('trying to delete');
+        const message = e.target.value;
+       // const remainingMessages = this.state.messages.filter(messageToDelete => message !== messageToDelete);
+        if (this.props.user.displayName === message.username) {
+         this.messagesRef.remove( {messages: message} );   
+        }
     }
 
-render() {
+    render() {
         if (this.props.user) {
             return (
                 <section className='message-area'>
+                    <h2 className='room-name'>{this.props.activeRoomName}</h2>
                     <section className='message-list-area'>
                         {
-                            this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) => 
+                            this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) =>
                             <section className='message-details' key={index} >
                                 <div className='message-username'>{message.username}</div>
                                 <div className='message-content'>{message.content}</div>
                                 <div className='message-sent-at'>{this.convertTimestamp(message.sentAt)}</div>
+                                <button className='delete-button' onClick={ (e) => this.handleDelete(e)}>Delete</button>
                             </section>
                             )
                         }
@@ -79,6 +86,7 @@ render() {
         } else {
             return (
                 <section className='message-area'>
+                    <h2 className='room-name'>{this.props.activeRoomName}</h2>
                     <section className='message-list-area'>
                     {
                         this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) => 

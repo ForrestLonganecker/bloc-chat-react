@@ -7,5 +7,9 @@
     border: dashed;
 }
 .message-details div {
-    padding: 10
+    padding: 10;
+}
+
+.room-name {
+    background-color: purple;
 }

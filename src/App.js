@@ -20,7 +20,10 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state= {
-      activeRoom: '',
+      activeRoom: {
+        key: '1',
+        name: 'Welcome'
+      },
       user: {
         displayName: ''
       }
@@ -29,7 +32,7 @@ class App extends Component {
 
   selectActiveRoom(e) {
     this.setState({ activeRoom: e });
-    //console.log(this.state.activeRoom);
+    console.log(this.state.activeRoom);
   }
 
   setUser(e) {
@@ -60,6 +63,7 @@ class App extends Component {
             <MessageList
               firebase={firebase}
               activeRoom={this.state.activeRoom}
+              activeRoomName={this.state.activeRoom.name}
               user={this.state.user}
             />
           </section>

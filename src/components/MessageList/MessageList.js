@@ -49,9 +49,8 @@ class MessageList extends Component {
     }
 
     handleDelete(e) {
-        console.log('trying to delete');
+        console.log('Trying to delete' + e.target.value);
         const message = e.target.value;
-       // const remainingMessages = this.state.messages.filter(messageToDelete => message !== messageToDelete);
         if (this.props.user.displayName === message.username) {
          this.messagesRef.remove( {messages: message} );   
         }

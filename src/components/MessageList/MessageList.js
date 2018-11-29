@@ -52,7 +52,7 @@ class MessageList extends Component {
         console.log('Trying to delete' + e.target.value);
         const message = e.target.value;
         if (this.props.user.displayName === message.username) {
-         this.messagesRef.remove( {messages: message} );   
+         this.messagesRef.remove( message );   
         }
     }
 

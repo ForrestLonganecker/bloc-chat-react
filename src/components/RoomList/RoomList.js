@@ -33,28 +33,44 @@ class RoomList extends Component {
     }
 
     render() {
-        return (
-            <section className='room-list'>
-                <section className='creator-container'>
-                    <form className='room-creator-form' onSubmit={ (e) => this.handleSubmit(e) }>
-                        <h3>Create new room</h3>
-                        <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleNewRoomNameChange(e) } />
-                        <input className='new-room-button' type='submit' />
-                    </form>
-                </section>
-                {
-                    this.state.rooms.map( (room, index) =>
-                    <section className='room-details' key={index} >
-                        <a className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
-                            <div>{room.name}</div>
-                        </a>
+        if(this.props.user) {
+            return (
+                <section className='room-list'>
+                    <section className='creator-container'>
+                        <form className='room-creator-form' onSubmit={ (e) => this.handleSubmit(e) }>
+                            <h3>Create new room</h3>
+                            <input className='new-room-name' type='text' value={this.state.newRoomName} onChange={ (e) => this.handleNewRoomNameChange(e) } />
+                            <input className='new-room-button' type='submit' />
+                        </form>
                     </section>
-                    )
-                }
+                    {
+                        this.state.rooms.map( (room, index) =>
+                        <section className='room-details' key={index} >
+                            <button className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
+                                <div>{room.name}</div>
+                            </button>
+                        </section>
+                        )
+                    }
 
-            </section>
+                </section>
 
-        );
+            );
+        } else {
+            return (
+                <section className='room-list'>
+                    {
+                        this.state.rooms.map( (room, index) =>
+                        <section className='room-details' key={index} >
+                            <button className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
+                                <div>{room.name}</div>
+                            </button>
+                        </section>
+                        )
+                    }
+                </section>
+            );
+        }
     }
 }
 

@@ -13,3 +13,13 @@
 .room-name {
     background-color: purple;
 }
+
+.edit-button {
+    display: flex;
+}
+
+.message-buttons {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

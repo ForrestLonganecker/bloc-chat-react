@@ -48,58 +48,50 @@ class MessageList extends Component {
         this.setState({ newMessage: {content: e.target.value, roomId: this.props.activeRoom.key, username: this.props.user.displayName, sentAt: this.props.firebase.database.ServerValue.TIMESTAMP } });
     }
 
-    handleDelete(e) {
-        console.log('Trying to delete' + e.target.value);
-        const message = e.target.value;
+    handleDelete(message) {
         if (this.props.user.displayName === message.username) {
-         this.messagesRef.remove( message );   
+            this.messagesRef.child(message.key).remove();
+            this.setState({messages: this.state.messages.filter((m) => m.key !== message.key)
+            });        
         }
     }
 
+    renderCreateRoom(user) {
+        return user ? 
+            <section className='new-message-field'>
+                <form className='new-message-form' onSubmit={ (e) => this.handleSubmit(e)}>
+                    <h3>Create new message</h3>
+                    <input className='new-message-text-area' type='text-area' value={this.state.newMessage.content} onChange={ (e) => this.handleChange(e)}/>
+                    <input className='new-message-button' type='submit' />
+                </form> 
+            </section>
+        : undefined;
+    }
+
     render() {
-        if (this.props.user) {
-            return (
-                <section className='message-area'>
-                    <h2 className='room-name'>{this.props.activeRoomName}</h2>
-                    <section className='message-list-area'>
-                        {
-                            this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) =>
-                            <section className='message-details' key={index} >
-                                <div className='message-username'>{message.username}</div>
-                                <div className='message-content'>{message.content}</div>
-                                <div className='message-sent-at'>{this.convertTimestamp(message.sentAt)}</div>
-                                <button className='delete-button' onClick={ (e) => this.handleDelete(e)}>Delete</button>
-                            </section>
-                            )
-                        }
-                    </section>
-                    <section className='new-message-field'>
-                        <form className='new-message-form' onSubmit={ (e) => this.handleSubmit(e)}>
-                            <h3>Create new message</h3>
-                            <input className='new-message-text-area' type='text-area' value={this.state.newMessage.content} onChange={ (e) => this.handleChange(e)}/>
-                            <input className='new-message-button' type='submit' />
-                        </form> 
-                    </section>
-                </section>
-        );
-        } else {
-            return (
-                <section className='message-area'>
-                    <h2 className='room-name'>{this.props.activeRoomName}</h2>
-                    <section className='message-list-area'>
+        return (
+            <section className='message-area'>
+                <h2 className='room-name'>{this.props.activeRoomName}</h2>
+                <section className='message-list-area'>
                     {
-                        this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) => 
+                        this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) =>
                         <section className='message-details' key={index} >
                             <div className='message-username'>{message.username}</div>
                             <div className='message-content'>{message.content}</div>
                             <div className='message-sent-at'>{this.convertTimestamp(message.sentAt)}</div>
+                            <section className='message-buttons'>
+                                {this.props.user && <button className='delete-button' onClick={ (e) => this.handleDelete(message)}>Delete</button>}
+                                {this.props.user && <button className='edit-button'>Edit</button>}
+                            </section>
                         </section>
+
                         )
                     }
-                    </section>
                 </section>
-            )
-        }
+                {this.renderCreateRoom(this.props.user)}
+            </section>
+        );
+    
     }
 }
 

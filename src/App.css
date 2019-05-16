@@ -1,14 +1,18 @@
-header {
+.App {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  background-color: yellow;
+}
+
+header {
+  background-color: orange;
+}
+
+.top-bar {
+  display: flex;
+  /* justify-content: space-around; */
 }
 
 .chat-area {
   display: flex;
-  flex-direction: row;
-}
-
-.chat-rooms {
-  display: flex;
-  justify-content: flex-start;
 }

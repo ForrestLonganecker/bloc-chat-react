@@ -56,7 +56,7 @@ class MessageList extends Component {
         }
     }
 
-    renderCreateRoom(user) {
+    renderCreateMessage(user) {
         return user ? 
             <section className='new-message-field'>
                 <form className='new-message-form' onSubmit={ (e) => this.handleSubmit(e)}>
@@ -72,6 +72,9 @@ class MessageList extends Component {
         return (
             <section className='message-area'>
                 <h2 className='room-name'>{this.props.activeRoomName}</h2>
+                <div className='message-creator'>
+                    {this.renderCreateMessage(this.props.user)}
+                </div>
                 <section className='message-list-area'>
                     {
                         this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map( (message, index) =>
@@ -88,7 +91,6 @@ class MessageList extends Component {
                         )
                     }
                 </section>
-                {this.renderCreateRoom(this.props.user)}
             </section>
         );
     

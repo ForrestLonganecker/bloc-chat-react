@@ -26,12 +26,19 @@ class User extends Component {
         }
     }
 
+    displayButton(){
+        if(this.props.user) {
+            return <button className='sign-out-button' type='button' onClick={ () => this.handleSignOutClick() } >Sign Out</button>
+        } else {
+            return <button className='sign-in-button' type='button' onClick={ () => this.handleSignInClick() } >Sign in</button>
+        }
+    }
+
     render() {
         return (
             <div className='log-in-box'>
                 <section className='sign-in-out'>
-                    <button className='sign-in-button' type='button' onClick={ () => this.handleSignInClick() } >Sign in</button>
-                    <button className='sign-out-button' type='button' onClick={ () => this.handleSignOutClick() } >Sign Out</button>
+                {this.displayButton()}
                 </section>
                 <h4 className='display-name'>{this.displayUserName()}</h4>
             </div>

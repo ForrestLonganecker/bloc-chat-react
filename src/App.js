@@ -43,14 +43,18 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <header>Bloc Toc</header>
-        <section className='log-in-field'>
-          <User
-            firebase={firebase}
-            setUser={(e) => this.setUser(e)}
-            user={this.state.user}
-          />
-        </section>
+        <div className='top-bar'>
+          <div className='Logo'>
+            <header>Bloc Toc</header>
+          </div>
+          <section className='log-in-field'>
+            <User
+              firebase={firebase}
+              setUser={(e) => this.setUser(e)}
+              user={this.state.user}
+            />
+          </section>
+        </div>
         <section className='chat-area'>
           <section className='chat-rooms'>
             <RoomList
@@ -59,7 +63,9 @@ class App extends Component {
               activeRoom={this.state.activeRoom}
               user={this.state.user}
             />
+          </section>
           
+          <section className='chat-messages'>
             <MessageList
               firebase={firebase}
               activeRoom={this.state.activeRoom}

@@ -1,7 +1,15 @@
 .room-list {
-    background-color: pink;
     display: flex;
     flex-direction: column;
+}
+
+.creator-container {
+    background-color: lavender;
+    padding-bottom: 15px;
+}
+
+.rooms {
+    margin-top: 20px;
 }
 
 .room-details {
@@ -11,4 +19,5 @@
     padding: 10px 10px 10px 10px;
     border-style: solid;
     align-items: center;
+    margin: 10px;
 }

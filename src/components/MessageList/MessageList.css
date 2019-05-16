@@ -1,7 +1,6 @@
 .banner {
     background-color: lavender;
     display: flex;
-    justify-content: space-around;
     align-items: center;
 }
 
@@ -33,6 +32,7 @@
 
 .room-name {
     text-align: center;
+    flex: 1
 }
 
 .message-buttons {

@@ -16,6 +16,8 @@ header {
 
 .top-bar {
   display: flex;
+  height: 60px;
+  align-items: center;
 }
 
 .top-bar > .user-name {

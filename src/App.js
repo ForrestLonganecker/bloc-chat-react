@@ -6,27 +6,26 @@ import User from './components/User/User';
 import * as firebase from 'firebase';
 
 var config = {
-  apiKey: "AIzaSyAix9IqYEhOqbgrrZd-b3PUGj1O60mRR34",
-  authDomain: "bloc-chat-27788.firebaseapp.com",
-  databaseURL: "https://bloc-chat-27788.firebaseio.com",
-  projectId: "bloc-chat-27788",
-  storageBucket: "bloc-chat-27788.appspot.com",
-  messagingSenderId: "887882509838"
+  apiKey: 'AIzaSyAix9IqYEhOqbgrrZd-b3PUGj1O60mRR34',
+  authDomain: 'bloc-chat-27788.firebaseapp.com',
+  databaseURL: 'https://bloc-chat-27788.firebaseio.com',
+  projectId: 'bloc-chat-27788',
+  storageBucket: 'bloc-chat-27788.appspot.com',
+  messagingSenderId: '887882509838',
 };
 firebase.initializeApp(config);
 
 class App extends Component {
-  
   constructor(props) {
-    super(props)
-    this.state= {
+    super(props);
+    this.state = {
       activeRoom: {
         key: '1',
-        name: 'Welcome'
+        name: 'Welcome',
       },
       user: {
-        displayName: ''
-      }
+        displayName: '',
+      },
     };
   }
 
@@ -42,30 +41,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <div className='top-bar'>
-          <div className='Logo'>
+      <div className="App">
+        <div className="top-bar">
+          <div className="Logo">
             <header>Bloc Toc</header>
           </div>
-          <section className='log-in-field'>
+          <section className="log-in-field">
             <User
               firebase={firebase}
-              setUser={(e) => this.setUser(e)}
+              setUser={e => this.setUser(e)}
               user={this.state.user}
             />
           </section>
         </div>
-        <section className='chat-area'>
-          <section className='chat-rooms'>
+        <section className="chat-area">
+          <section className="chat-rooms">
             <RoomList
               firebase={firebase}
-              selectActiveRoom={(e) => this.selectActiveRoom(e)}
+              selectActiveRoom={e => this.selectActiveRoom(e)}
               activeRoom={this.state.activeRoom}
               user={this.state.user}
             />
           </section>
-          
-          <section className='chat-messages'>
+
+          <section className="chat-messages">
             <MessageList
               firebase={firebase}
               activeRoom={this.state.activeRoom}

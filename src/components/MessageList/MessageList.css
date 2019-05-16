@@ -1,28 +1,38 @@
+.banner {
+    background-color: lavender;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .message-list-area {
     text-align: center;
     margin: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: green;
-    min-width: 80%;
 }
 .message-details {
-    /* display: flex;
-    flex-direction: column; */
     margin: 10px;
     border: dashed;
+    background-color: lime;
+
 }
+
+.new-message-form {
+    margin-bottom: 15px;
+}
+
 .message-details div {
     padding: 10;
 }
 
 .message-creator {
+    display: flex;
     text-align: center;
 }
 
 .room-name {
     text-align: center;
-    background-color: purple;
 }
 
 .message-buttons {

@@ -18,13 +18,13 @@ class User extends Component {
         });
     }
 
-    displayUserName() {
-        if(this.props.user) {
-            return this.props.user.displayName;
-        } else {
-            return 'Please log in to start Tocing!';
-        }
-    }
+    // displayUserName() {
+    //     if(this.props.user) {
+    //         return this.props.user.displayName;
+    //     } else {
+    //         return 'Please log in to start Tocing!';
+    //     }
+    // }
 
     displayButton(){
         if(this.props.user) {
@@ -36,12 +36,9 @@ class User extends Component {
 
     render() {
         return (
-            <div className='log-in-box'>
-                <section className='sign-in-out'>
-                {this.displayButton()}
-                </section>
-                <h4 className='display-name'>{this.displayUserName()}</h4>
-            </div>
+          <div className='log-in-box'>
+            {this.displayButton()}
+          </div>
         );
     }
 }

@@ -39,6 +39,14 @@ class App extends Component {
     //console.log(this.state.user);
   }
 
+  displayUserName() {
+    if(this.state.user){
+      return this.state.user.displayName;
+    } else {
+      return 'Log in/ Sign up to start Chatting!'
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -46,13 +54,16 @@ class App extends Component {
           <div className="Logo">
             <header>Bloc Toc</header>
           </div>
-          <section className="log-in-field">
+          <div className="user-name">
+            {this.displayUserName()}
+          </div>
+          <div className="log-in-field">
             <User
               firebase={firebase}
               setUser={e => this.setUser(e)}
               user={this.state.user}
             />
-          </section>
+          </div>
         </div>
         <section className="chat-area">
           <section className="chat-rooms">

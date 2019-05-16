@@ -15,7 +15,7 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
-    this.messagesRef.on('child_added', snapshot => {
+    this.messagesRef.on('child_added', (snapshot) => {
       const message = snapshot.val();
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat(message) });
@@ -67,18 +67,16 @@ class MessageList extends Component {
 
   renderCreateMessage(user) {
     return user ? (
-      <section className="new-message-field">
-        <form className="new-message-form" onSubmit={e => this.handleSubmit(e)}>
-          <h3>Create new message</h3>
-          <input
-            className="new-message-text-area"
-            type="text-area"
-            value={this.state.newMessage.content}
-            onChange={e => this.handleChange(e)}
-          />
-          <input className="new-message-button" type="submit" />
-        </form>
-      </section>
+      <form className="new-message-form" onSubmit={e => this.handleSubmit(e)}>
+        <h3>Create new message</h3>
+        <input
+          className="new-message-text-area"
+          type="text-area"
+          value={this.state.newMessage.content}
+          onChange={e => this.handleChange(e)}
+        />
+        <input className="new-message-button" type="submit" />
+      </form>
     ) : (
       undefined
     );
@@ -87,8 +85,8 @@ class MessageList extends Component {
   render() {
     return (
       <section className="message-area">
-        <h2 className="room-name">{this.props.activeRoomName}</h2>
-        <div className="message-creator">
+        <div className="banner">
+          <h2 className="room-name">{this.props.activeRoomName}</h2>
           {this.renderCreateMessage(this.props.user)}
         </div>
         <section className="message-list-area">
@@ -105,13 +103,14 @@ class MessageList extends Component {
                   {this.props.user && (
                     <button
                       className="delete-button"
-                      onClick={e => this.handleDelete(message)}
+                      type="submit"
+                      onClick={() => this.handleDelete(message)}
                     >
                       Delete
                     </button>
                   )}
                   {this.props.user && (
-                    <button className="edit-button">Edit</button>
+                    <button className="edit-button" type="submit">Edit</button>
                   )}
                 </section>
               </section>

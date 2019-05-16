@@ -1,7 +1,13 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  background-color: yellow;
+  margin: 20px;
+}
+
+.App > section {
+  flex: 1;
+}
+
+.user-name {
+  text-align: center;
 }
 
 header {
@@ -10,9 +16,20 @@ header {
 
 .top-bar {
   display: flex;
-  /* justify-content: space-around; */
+}
+
+.top-bar > .user-name {
+  flex: 1;
 }
 
 .chat-area {
   display: flex;
+}
+
+.chat-rooms {
+  margin-left: auto;
+}
+
+.chat-messages {
+  flex: 1;
 }

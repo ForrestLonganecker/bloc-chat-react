@@ -35,7 +35,7 @@ class RoomList extends Component {
     render() {
         if(this.props.user) {
             return (
-                <section className='room-list'>
+                <div className="room-div">
                     <section className='creator-container'>
                         <form className='room-creator-form' onSubmit={ (e) => this.handleSubmit(e) }>
                             <h3>Create new room</h3>
@@ -43,19 +43,21 @@ class RoomList extends Component {
                             <input className='new-room-button' type='submit' />
                         </form>
                     </section>
-                    <section className="rooms">
-                        {
-                            this.state.rooms.map( (room, index) =>
-                            <section className='room-details' key={index} >
-                                <button className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
-                                    <div>{room.name}</div>
-                                </button>
-                            </section>
-                            )
-                        }
-                    </section>
+                    <section className='room-list'>
+                        <section className="rooms">
+                            {
+                                this.state.rooms.map( (room, index) =>
+                                <section className='room-details' key={index} >
+                                    <button className='select-active-room' onClick={ (e) => this.props.selectActiveRoom(room) }>
+                                        <div>{room.name}</div>
+                                    </button>
+                                </section>
+                                )
+                            }
+                        </section>
 
-                </section>
+                    </section>
+                </div>
 
             );
         } else {

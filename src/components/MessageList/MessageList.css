@@ -1,33 +1,47 @@
 .banner {
     background-color: lavender;
     display: flex;
-    align-items: center;
+    align-items: space-around;
+    padding-bottom: 15px;
 }
 
 .message-list-area {
-    text-align: center;
-    margin: 20px;
+    overflow-y: scroll;
+    height: 500px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+.non-message {
+    display:flex
+}
+
+.message-content {
+    text-align: center;
+    padding: 5px;
+}
+
 .message-details {
+    padding: 10px;
     margin: 10px;
     border: dashed;
-    background-color: lime;
-
+    background-color: lightgreen;
 }
 
 .new-message-form {
     margin-bottom: 15px;
+    margin-right: 2%;
 }
 
-.message-details div {
-    padding: 10;
+.sender-info {
+    display: flex;
+    align-content: space-between;
 }
 
 .message-creator {
     display: flex;
     text-align: center;
+    margin-right: 10px;
 }
 
 .room-name {
@@ -39,4 +53,21 @@
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-left: auto;
+}
+
+.message-sent-at {
+    margin-left: 5px;
+}
+
+.select-active-room {
+    background-color: lightseagreen;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

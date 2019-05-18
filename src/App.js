@@ -3,7 +3,10 @@ import './App.css';
 import RoomList from './components/RoomList/RoomList';
 import MessageList from './components/MessageList/MessageList';
 import User from './components/User/User';
+import Header from './components/Header/Header';
 import * as firebase from 'firebase';
+
+import logIn from './assets/images/agreement-2548138_1920.jpg';
 
 var config = {
   apiKey: 'AIzaSyAix9IqYEhOqbgrrZd-b3PUGj1O60mRR34',
@@ -47,24 +50,9 @@ class App extends Component {
     }
   }
 
-  render() {
-    return (
-      <div className="App">
-        <div className="top-bar">
-          <div className="Logo">
-            <header>Bloc Toc</header>
-          </div>
-          <div className="user-name">
-            {this.displayUserName()}
-          </div>
-          <div className="log-in-field">
-            <User
-              firebase={firebase}
-              setUser={e => this.setUser(e)}
-              user={this.state.user}
-            />
-          </div>
-        </div>
+  displayContent() {
+    if(this.state.user){
+      return(
         <section className="chat-area">
           <section className="chat-rooms">
             <RoomList
@@ -84,9 +72,57 @@ class App extends Component {
             />
           </section>
         </section>
+      )
+    } else {
+      return (
+        <img src={logIn} alt="Log-in image" />
+      )
+    }
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <div className="top-bar">
+          <div className="Logo">
+            <Header />
+          </div>
+          <div className="user-name">
+            {this.displayUserName()}
+          </div>
+          <div className="log-in-field">
+            <User
+              firebase={firebase}
+              setUser={e => this.setUser(e)}
+              user={this.state.user}
+            />
+          </div>
+        </div>
+        <section className="chat-area">
+        <section className="chat-rooms">
+          <RoomList
+            firebase={firebase}
+            selectActiveRoom={e => this.selectActiveRoom(e)}
+            activeRoom={this.state.activeRoom}
+            user={this.state.user}
+          />
+        </section>
+
+        <section className="chat-messages">
+          <MessageList
+            firebase={firebase}
+            activeRoom={this.state.activeRoom}
+            activeRoomName={this.state.activeRoom.name}
+            user={this.state.user}
+          />
+        </section>
+      </section>
       </div>
     );
   }
 }
 
 export default App;
+
+

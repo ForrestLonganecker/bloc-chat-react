@@ -94,25 +94,29 @@ class MessageList extends Component {
             .filter(message => message.roomId === this.props.activeRoom.key)
             .map((message, index) => (
               <section className="message-details" key={index}>
-                <div className="message-username">{message.username}</div>
                 <div className="message-content">{message.content}</div>
-                <div className="message-sent-at">
-                  {this.convertTimestamp(message.sentAt)}
+                <div className="non-message">
+                  <section className="sender-info">
+                    <div className="message-username">{message.username}</div>
+                    <div className="message-sent-at">
+                      {this.convertTimestamp(message.sentAt)}
+                    </div>
+                  </section>
+                  <section className="message-buttons">
+                    {this.props.user && (
+                      <button
+                        className="delete-button"
+                        type="submit"
+                        onClick={() => this.handleDelete(message)}
+                      >
+                        Delete
+                      </button>
+                    )}
+                    {this.props.user && (
+                      <button className="edit-button" type="submit">Edit</button>
+                    )}
+                  </section>
                 </div>
-                <section className="message-buttons">
-                  {this.props.user && (
-                    <button
-                      className="delete-button"
-                      type="submit"
-                      onClick={() => this.handleDelete(message)}
-                    >
-                      Delete
-                    </button>
-                  )}
-                  {this.props.user && (
-                    <button className="edit-button" type="submit">Edit</button>
-                  )}
-                </section>
               </section>
             ))}
         </section>

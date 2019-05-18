@@ -1,11 +1,13 @@
 .room-list {
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+    height: 500px;
 }
 
 .creator-container {
     background-color: lavender;
-    padding-bottom: 15px;
+    padding: 15px;
 }
 
 .rooms {
@@ -13,7 +15,7 @@
 }
 
 .room-details {
-    background-color: blue;
+    background-color: lightblue;
     display: flex;
     flex-direction: column;
     padding: 10px 10px 10px 10px;

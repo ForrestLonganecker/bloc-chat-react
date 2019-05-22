@@ -50,6 +50,8 @@ class App extends Component {
     }
   }
 
+  // move <RoomList/> and <MessageList/> into <ChatArea/> component
+
   displayContent() {
     if(this.state.user){
       return(
@@ -82,6 +84,8 @@ class App extends Component {
     }
   }
 
+// move <Header/> this.displayUserName and <User/>
+// into a <Nav/> component
 
   render() {
     return (

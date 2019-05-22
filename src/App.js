@@ -75,7 +75,9 @@ class App extends Component {
       )
     } else {
       return (
-        <img src={logIn} alt="Log-in image" />
+        <div className="log-in-logo">
+          <img src={logIn} alt="Log-in Logo" />
+        </div>
       )
     }
   }
@@ -99,25 +101,7 @@ class App extends Component {
             />
           </div>
         </div>
-        <section className="chat-area">
-        <section className="chat-rooms">
-          <RoomList
-            firebase={firebase}
-            selectActiveRoom={e => this.selectActiveRoom(e)}
-            activeRoom={this.state.activeRoom}
-            user={this.state.user}
-          />
-        </section>
-
-        <section className="chat-messages">
-          <MessageList
-            firebase={firebase}
-            activeRoom={this.state.activeRoom}
-            activeRoomName={this.state.activeRoom.name}
-            user={this.state.user}
-          />
-        </section>
-      </section>
+        {this.displayContent()}
       </div>
     );
   }
@@ -126,3 +110,22 @@ class App extends Component {
 export default App;
 
 
+// <section className="chat-area">
+// <section className="chat-rooms">
+//   <RoomList
+//     firebase={firebase}
+//     selectActiveRoom={e => this.selectActiveRoom(e)}
+//     activeRoom={this.state.activeRoom}
+//     user={this.state.user}
+//   />
+// </section>
+
+// <section className="chat-messages">
+//   <MessageList
+//     firebase={firebase}
+//     activeRoom={this.state.activeRoom}
+//     activeRoomName={this.state.activeRoom.name}
+//     user={this.state.user}
+//   />
+// </section>
+// </section>

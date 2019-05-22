@@ -6,12 +6,12 @@
   max-height: 100%;
 }
 
-.user-name {
-  text-align: center;
+.log-in-logo > img{
+  max-width: 100vw;
 }
 
-header {
-  background-color: orange;
+.user-name {
+  text-align: center;
 }
 
 .top-bar {
@@ -26,7 +26,7 @@ header {
 
 .chat-area {
   display: flex;
-  height: 80%;
+  /* height: 100vh; */
 }
 
 .chat-rooms {

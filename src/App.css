@@ -6,8 +6,15 @@
   max-height: 100%;
 }
 
+.log-in-logo {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+}
+
 .log-in-logo > img{
-  max-width: 100vw;
+  max-height: 100vh;
 }
 
 .user-name {
